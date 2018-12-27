@@ -3,13 +3,19 @@
 #' @param map
 #' @param targetLayerId
 #' @param targetGroup
+#' @param toolbarOptions
+#' @param drawOptions
+#' @param editOptions
 #'
 #' @return leaflet htmlwidget
 #' @export
 addPmToolbar <- function(
   map = NULL,
   targetLayerId = NULL,
-  targetGroup = NULL
+  targetGroup = NULL,
+  toolbarOptions = pmToolbarOptions(),
+  drawOptions = pmDrawOptions(),
+  editOptions = pmEditOptions()
 ) {
   if(is.null(map)) {
     stop("Please add required map argument.  This should be a leaflet htmlwidget.")
@@ -22,7 +28,11 @@ addPmToolbar <- function(
     leaflet::getMapData(map),
     "addPmToolbar",
     targetLayerId,
-    targetGroup#,
-    #options
+    targetGroup,
+    list(
+      toolbarOptions = toolbarOptions,
+      drawOptions = drawOptions,
+      editOptions = editOptions
+    )
   )
 }

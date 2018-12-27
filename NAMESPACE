@@ -2,3 +2,6 @@
 
 export(addPmToolbar)
 export(pmDependencies)
+export(pmDrawOptions)
+export(pmEditOptions)
+export(pmToolbarOptions)

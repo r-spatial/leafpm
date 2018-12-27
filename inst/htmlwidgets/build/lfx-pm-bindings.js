@@ -143,7 +143,14 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
 */
     //map.drawToolbar =  new L.Control.Draw(options);
     //map.drawToolbar.addTo(map);
-    map.pm.addControls();
+    map.pm.enableDraw('Poly', options.drawOptions);
+    map.pm.enableDraw('Rectangle', options.drawOptions);
+    map.pm.enableDraw('Line', options.drawOptions);
+    map.pm.enableDraw('Marker', options.drawOptions);
+    map.pm.enableDraw('Circle', options.drawOptions);
+    map.pm.disableDraw();
+
+    map.pm.addControls(options.toolbarOptions);
 
     // Event Listeners
     map.on('pm:drawstart', function(e) {

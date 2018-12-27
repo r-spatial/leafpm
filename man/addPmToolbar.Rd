@@ -4,10 +4,12 @@
 \alias{addPmToolbar}
 \title{Add 'leaflet-pm' Toolbar to a Leaflet 'htmlwidget'}
 \usage{
-addPmToolbar(map = NULL, targetLayerId = NULL, targetGroup = NULL)
+addPmToolbar(map = NULL, targetLayerId = NULL, targetGroup = NULL,
+  toolbarOptions = pmToolbarOptions(), drawOptions = pmDrawOptions(),
+  editOptions = pmEditOptions())
 }
 \arguments{
-\item{targetGroup}{}
+\item{editOptions}{}
 }
 \value{
 leaflet htmlwidget
