@@ -15,7 +15,8 @@ addPmToolbar <- function(
   targetGroup = NULL,
   toolbarOptions = pmToolbarOptions(),
   drawOptions = pmDrawOptions(),
-  editOptions = pmEditOptions()
+  editOptions = pmEditOptions(),
+  cutOptions = pmCutOptions()
 ) {
   if(is.null(map)) {
     stop("Please add required map argument.  This should be a leaflet htmlwidget.")
@@ -32,7 +33,8 @@ addPmToolbar <- function(
     list(
       toolbarOptions = toolbarOptions,
       drawOptions = drawOptions,
-      editOptions = editOptions
+      editOptions = editOptions,
+      cutOptions = cutOptions
     )
   )
 }

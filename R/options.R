@@ -107,3 +107,23 @@ pmEditOptions <- function(
     draggable = draggable
   ))
 }
+
+
+#' Title
+#'
+#' @param snappable
+#' @param cursorMarker
+#'
+#' @return
+#' @export
+#'
+#' @examples
+pmCutOptions <- function(
+  snappable = FALSE,
+  cursorMarker = FALSE
+) {
+  leaflet::filterNULL(list(
+    snappable = snappable,
+    cursorMarker = cursorMarker
+  ))
+}

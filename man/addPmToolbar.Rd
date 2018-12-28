@@ -6,7 +6,7 @@
 \usage{
 addPmToolbar(map = NULL, targetLayerId = NULL, targetGroup = NULL,
   toolbarOptions = pmToolbarOptions(), drawOptions = pmDrawOptions(),
-  editOptions = pmEditOptions())
+  editOptions = pmEditOptions(), cutOptions = pmCutOptions())
 }
 \arguments{
 \item{editOptions}{}

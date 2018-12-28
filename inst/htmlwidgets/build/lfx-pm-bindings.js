@@ -40,6 +40,8 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
         map._editableGeoJSONLayerId = targetLayerId;
         // set pmIgnore to false so we can not disable later
         editableFeatureGroup.options.pmIgnore = false;
+        editableFeatureGroup.pm.enable(options.editOptions);
+        editableFeatureGroup.pm.disable();
       } else {
         // throw an error if we can't find the target GeoJSON layer
         throw 'GeoJSON layer with ID '+targetLayerId+' not Found';
@@ -57,6 +59,8 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
       if(editableFeatureGroup) {
         editableFeatureGroup.eachLayer(function(layer) {
           layer.options.pmIgnore = false;
+          layer.pm.enable(options.editOptions);
+          layer.pm.disable();
         });
       }
 
@@ -143,12 +147,18 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
 */
     //map.drawToolbar =  new L.Control.Draw(options);
     //map.drawToolbar.addTo(map);
+
+    // this is the only way I could find to set drawing options
     map.pm.enableDraw('Poly', options.drawOptions);
     map.pm.enableDraw('Rectangle', options.drawOptions);
     map.pm.enableDraw('Line', options.drawOptions);
     map.pm.enableDraw('Marker', options.drawOptions);
     map.pm.enableDraw('Circle', options.drawOptions);
     map.pm.disableDraw();
+
+    // set cut options
+    map.pm.Draw.Cut.enable(options);
+    map.pm.Draw.Cut.disable(options);
 
     map.pm.addControls(options.toolbarOptions);
 
@@ -180,6 +190,9 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
       if(typeof layer.getRadius === 'function') {
         layer.feature.properties.radius = layer.getRadius();
       }
+
+      layer.pm.enable(options.editOptions);
+      layer.pm.disable();
 
       layer.on("pm:edit", editCallback);
 
