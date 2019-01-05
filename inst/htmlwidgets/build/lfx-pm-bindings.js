@@ -65,11 +65,8 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
       }
 
     }
-    /*
-    // also add pmIgnore to the editable feature group
-    editableFeatureGroup.options.pmIgnore = false;
-    */
-    map.eachLayer(function(layer) {
+
+    function removePm(layer) {
       // messy but seems to be the only way based on https://github.com/codeofsumit/leaflet.pm/issues/160
       // seems to still allow snapping to ignored layers
 
@@ -80,10 +77,34 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
         return;
       }
 
+      // delete pm if it has already been added
       if(layer.pm) {
         delete layer.pm;
       }
+      // also add pmIgnore to the editable feature group
       layer.options.pmIgnore = true;
+    }
+
+    map.eachLayer(function(layer) {
+      removePm(layer);
+    });
+
+    // we will also need to ignore added Tile layers
+    map.on("layeradd", function(e) {
+      var layer = e.layer;
+      if(layer instanceof L.TileLayer) {
+        removePm(layer);
+      }
+      // we will also need to ignore layer group with tile layers
+      if(layer.hasOwnProperty('groupname')) {
+        var isTile = [];
+        layer.eachLayer(function(sublayer) {
+          isTile.push(sublayer instanceof L.TileLayer);
+        });
+        if(isTile.some(function(d){return d;})) {
+          removePm(layer);
+        }
+      }
     });
 
     // FeatureGroup that will hold our drawn shapes/markers
