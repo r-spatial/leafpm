@@ -359,28 +359,17 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
 
 };
 
-LeafletWidget.methods.removeDrawToolbar = function(clearFeatures) {
+LeafletWidget.methods.removePmToolbar = function(clearFeatures) {
   (function(){
-
+    // remember to add clearFeatures here
     var map = this;
 
-    if(map.drawToolbar) {
-      map.drawToolbar.removeFrom(map);
-      delete map.drawToolbar;
-    }
-    if(map._editableFeatureGroupName && clearFeatures) {
-      var featureGroup = map.layerManager.getLayerGroup(map._editableFeatureGroupName, false);
-      featureGroup.clearLayers();
-    }
-    map._editableFeatureGroupName = null;
-    if(map._editableGeoJSONLayerId && clearFeatures) {
-      map.layerManager.removeLayer('geojson', map._editableGeoJSONLayerId);
-    }
-    map._editableGeoJSONLayerId = null;
+    map.pm.removeControls();
   }).call(this);
 
 };
 
+/* code from leaflet.extras left as a reminder to add
 LeafletWidget.methods.getDrawnItems = function() {
   var map = this;
 
@@ -397,3 +386,4 @@ LeafletWidget.methods.getDrawnItems = function() {
   }
 
 };
+*/

@@ -9,7 +9,19 @@ addPmToolbar(map = NULL, targetLayerId = NULL, targetGroup = NULL,
   editOptions = pmEditOptions(), cutOptions = pmCutOptions())
 }
 \arguments{
-\item{editOptions}{}
+\item{map}{\code{leaflet} map htmlwidget to which the toolbar should be added}
+
+\item{targetLayerId}{\code{string} id of the feature to edit}
+
+\item{targetGroup}{\code{string} name of the group to edit}
+
+\item{toolbarOptions}{\code{pmToolbarOptions()}}
+
+\item{drawOptions}{\code{pmDrawOptions()}}
+
+\item{editOptions}{\code{pmEditOptions()}}
+
+\item{cutOptions}{\code{pmCutOptions()}}
 }
 \value{
 leaflet htmlwidget

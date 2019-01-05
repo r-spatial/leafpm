@@ -42,3 +42,17 @@ shinyApp(ui=map2, server=function(input,output){})
 # try with multiple feaure groups
 (map3 <- mapview(trl1)@map %>% addFeatures(franconia[1,], group="franconia") %>% addPmToolbar(targetGroup = "trl1"))
 shinyApp(ui=map3, server=function(input,output){})
+
+
+# test removePmToolbar
+map4 <- mapview(trl1)@map %>% addPmToolbar(targetGroup = "trl1")
+ui <- leafletOutput("map")
+server <- function(input, output, session) {
+  output$map <- renderLeaflet(map4)
+  observe({
+    invalidateLater(2000, session)
+    map4 %>% removePmToolbar()
+  })
+}
+
+shinyApp(ui=ui, server=server)

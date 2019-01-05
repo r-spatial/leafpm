@@ -1,11 +1,12 @@
 #' Add 'leaflet-pm' Toolbar to a Leaflet 'htmlwidget'
 #'
-#' @param map
-#' @param targetLayerId
-#' @param targetGroup
-#' @param toolbarOptions
-#' @param drawOptions
-#' @param editOptions
+#' @param map \code{leaflet} map htmlwidget to which the toolbar should be added
+#' @param targetLayerId \code{string} id of the feature to edit
+#' @param targetGroup \code{string} name of the group to edit
+#' @param toolbarOptions \code{pmToolbarOptions()}
+#' @param drawOptions \code{pmDrawOptions()}
+#' @param editOptions \code{pmEditOptions()}
+#' @param cutOptions \code{pmCutOptions()}
 #'
 #' @return leaflet htmlwidget
 #' @export
@@ -37,4 +38,11 @@ addPmToolbar <- function(
       cutOptions = cutOptions
     )
   )
+}
+
+#' Removes the 'leaflet.pm' toolbar
+#' @param clearFeatures whether to clear the map of drawn features. currently not working
+#' @export
+removePmToolbar <- function(map, clearFeatures = FALSE) {
+  leaflet::invokeMethod(map, leaflet::getMapData(map), "removePmToolbar", clearFeatures)
 }
