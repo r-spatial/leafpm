@@ -1,10 +1,29 @@
 Package: leafpm
 Version: 0.0.0.9000
-Title: What the Package Does (One Line, Title Case)
-Description: What the package does (one paragraph).
-Authors@R: person("First", "Last", , "first.last@example.com", c("aut", "cre"))
-License: What license it uses
+Title: Leaflet Map Plugin for Drawing and Editing
+Description: Edit, draw, cut, and delete geographic features on leaflet maps using the 'Leaflet.pm' plugin.
+Authors@R: c(
+    person("Tim", "Appelhans", role = c("aut", "cre"), email = "tim.appelhans@gmail.com"),
+    person("Kenton", "Russell", role = c("aut"))
+  )
+License: MIT + file LICENSE
+URL: https://github.com/r-spatial/leafpm
+BugReports: https://github.com/r-spatial/leafpm/issues
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
 RoxygenNote: 6.0.1
+epends:
+    R (>= 3.1.0)
+Imports:
+    dplyr,
+    htmltools (>= 0.3),
+    htmlwidgets,
+    jsonlite,
+    leaflet (>= 2.0.1),
+    sf (>= 0.5-2),
+Enhances:
+    geojsonio,
+    mapedit,
+    mapview,
+    shiny
