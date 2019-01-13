@@ -26,6 +26,15 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
         layer.toGeoJSON());
     };
 
+    var enablePm = function(layer, options) {
+      // set pmIgnore to false so we can not disable later
+      layer.options.pmIgnore = false;
+      if(layer.hasOwnProperty("pm") && layer.pm.hasOwnProperty("enable")) {
+        layer.pm.enable(options.editOptions);
+        layer.pm.disable();
+      }
+    }
+
     if(map.pm.controlsVisible()) {
       map.pm.removeControls();
     }
@@ -38,10 +47,7 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
       editableFeatureGroup = map.layerManager.getLayer('geojson', targetLayerId);
       if(editableFeatureGroup) {
         map._editableGeoJSONLayerId = targetLayerId;
-        // set pmIgnore to false so we can not disable later
-        editableFeatureGroup.options.pmIgnore = false;
-        editableFeatureGroup.pm.enable(options.editOptions);
-        editableFeatureGroup.pm.disable();
+        enablePm(editableFeatureGroup, options.editOptions);
       } else {
         // throw an error if we can't find the target GeoJSON layer
         throw 'GeoJSON layer with ID '+targetLayerId+' not Found';
@@ -57,13 +63,12 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
       map._editableFeatureGroupName = targetGroup;
 
       if(editableFeatureGroup) {
+        // enable pm for the group
+        enablePm(editableFeatureGroup, options.editOptions);
         editableFeatureGroup.eachLayer(function(layer) {
-          layer.options.pmIgnore = false;
-          layer.pm.enable(options.editOptions);
-          layer.pm.disable();
+          enablePm(layer, options.editOptions);
         });
       }
-
     }
 
     function removePm(layer) {
@@ -249,112 +254,22 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
         layer.toGeoJSON());
     });
 
+    // handle cut events
+    //  leaflet.pm replaces the layer with a new layer which contains results
+    map.on("pm:cut", function(e) {
+      // attach the editCallback to the new layer
+      e.layer.on("pm:edit", editCallback);
+
+      // for now we will communicate cut through edited
+      e.layer.eachLayer(function(lyr) {
+        editCallback({sourceTarget: lyr});
+      });
+    });
+
     // pm edit does not bubble to the map level
     // so we have to add the event handler to the layer group
     editableFeatureGroup.on('pm:edit', editCallback);
-/*
-    map.on(L.Draw.Event.CREATED, function (e) {
-      if (options.draw.singleFeature){
-        if (editableFeatureGroup.getLayers().length > 0) {
-          editableFeatureGroup.clearLayers();
-        }
-      }
 
-      var layer = e.layer;
-      editableFeatureGroup.addLayer(layer);
-
-      // assign a unique key to the newly created feature
-      var featureId = L.stamp(layer);
-      layer.feature = {
-        'type' : 'Feature',
-        'properties' : {
-          '_leaflet_id' : featureId,
-          'feature_type' : e.layerType
-        }
-      };
-
-      // circles are just Points and toGeoJSON won't store radius by default
-      // so we store it inside the properties.
-      if(typeof layer.getRadius === 'function') {
-        layer.feature.properties.radius = layer.getRadius();
-      }
-
-      if (!HTMLWidgets.shinyMode) return;
-
-      Shiny.onInputChange(map.id+'_draw_new_feature',
-        layer.toGeoJSON());
-      Shiny.onInputChange(map.id+'_draw_all_features',
-        editableFeatureGroup.toGeoJSON());
-    });
-
-    map.on(L.Draw.Event.EDITSTART, function (e) {
-      if (!HTMLWidgets.shinyMode) return;
-      Shiny.onInputChange(map.id+'_draw_editstart', true);
-    });
-    map.on(L.Draw.Event.EDITSTOP, function (e) {
-      if (!HTMLWidgets.shinyMode) return;
-      Shiny.onInputChange(map.id+'_draw_editstop', true);
-    });
-
-    map.on(L.Draw.Event.EDITED, function (e) {
-      var layers = e.layers;
-      layers.eachLayer(function(layer){
-        var featureId = L.stamp(layer);
-        if(!layer.feature) {
-          layer.feature = {'type' : 'Feature'};
-        }
-        if(!layer.feature.properties) {
-          layer.feature.properties = {};
-        }
-        layer.feature.properties._leaflet_id = featureId;
-        layer.feature.properties.layerId = layer.options.layerId;
-        if(typeof layer.getRadius === 'function') {
-          layer.feature.properties.radius = layer.getRadius();
-        }
-      });
-
-      if (!HTMLWidgets.shinyMode) return;
-
-      Shiny.onInputChange(map.id+'_draw_edited_features',
-        layers.toGeoJSON());
-      Shiny.onInputChange(map.id+'_draw_all_features',
-        editableFeatureGroup.toGeoJSON());
-    });
-
-    map.on(L.Draw.Event.DELETESTART, function (e) {
-      if (!HTMLWidgets.shinyMode) return;
-      Shiny.onInputChange(map.id+'_draw_deletestart', true);
-    });
-
-    map.on(L.Draw.Event.DELETESTOP, function (e) {
-      if (!HTMLWidgets.shinyMode) return;
-      Shiny.onInputChange(map.id+'_draw_deletestop', true);
-    });
-
-    map.on(L.Draw.Event.DELETED, function (e) {
-      var layers = e.layers;
-      layers.eachLayer(function(layer){
-        var featureId = L.stamp(layer);
-        if(!layer.feature) {
-          layer.feature = {'type' : 'Feature'};
-        }
-        if(!layer.feature.properties) {
-          layer.feature.properties = {};
-        }
-        layer.feature.properties._leaflet_id = featureId;
-        layer.feature.properties.layerId = layer.options.layerId;
-        if(typeof layer.getRadius === 'function') {
-          layer.feature.properties.radius = layer.getRadius();
-        }
-      });
-
-      if (!HTMLWidgets.shinyMode) return;
-      Shiny.onInputChange(map.id+'_draw_deleted_features',
-        layers.toGeoJSON());
-      Shiny.onInputChange(map.id+'_draw_all_features',
-        editableFeatureGroup.toGeoJSON());
-    });
-*/
   }).call(this);
 
 };
