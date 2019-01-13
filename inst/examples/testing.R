@@ -45,13 +45,12 @@ shinyApp(ui=map3, server=function(input,output){})
 
 
 # test removePmToolbar
-map4 <- mapview(trl1)@map %>% addPmToolbar(targetGroup = "trl1")
+map4 <- mapview(trl1)@map %>% addPmToolbar(targetGroup = "trl1") %>% removePmToolbar()
 ui <- leafletOutput("map")
 server <- function(input, output, session) {
   output$map <- renderLeaflet(map4)
   observe({
     invalidateLater(2000, session)
-    map4 %>% removePmToolbar()
   })
 }
 
