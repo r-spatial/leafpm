@@ -7,7 +7,7 @@ library(shiny)
 
 options(shiny.trace = TRUE)
 
-(map <- mapview()@map %>% addPmToolbar())
+(map <- mapview()@map %>% addPmToolbar(drawOptions = pmDrawOptions(allowSelfIntersection = FALSE)))
 
 shinyApp(ui=map, server=function(input,output){})
 
