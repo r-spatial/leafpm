@@ -1,17 +1,17 @@
-#' Title
+#' Set Options for 'leaflet.pm' Toolbar
 #'
-#' @param drawMarker
-#' @param drawPolygon
-#' @param drawPolyline
-#' @param drawCircle
-#' @param drawRectangle
-#' @param editMode
-#' @param cutPolygon
-#' @param dragPolygon
-#' @param removalMode
-#' @param position
+#' @param drawMarker \code{logical} add button to draw a marker. Default is \code{TRUE}.
+#' @param drawPolygon \code{logical} add button to draw a polygon. Default is \code{TRUE}.
+#' @param drawPolyline \code{logical} add button to draw a polyline. Default is \code{TRUE}.
+#' @param drawCircle \code{logical} add button to draw a circle. Default is \code{TRUE}.
+#' @param drawRectangle \code{logical} add button to draw a rectangle. Default is \code{TRUE}.
+#' @param editMode \code{logical} add button to edit features. Default is \code{TRUE}.
+#' @param cutPolygon \code{logical} add button to cut a hole. Default is \code{TRUE}.
+#' @param removalMode \code{logical} add button to remove features. Default is \code{TRUE}.
+#' @param position \code{string} toolbar position. Options are 'topleft', 'topright', 'bottomleft', 'bottomright'.
+#'         Default is \code{'topleft'}.
 #'
-#' @return
+#' @return \code{leaflet} htmlwidget with added toolbar
 #' @export
 pmToolbarOptions <- function(
   drawMarker = TRUE,
@@ -21,7 +21,6 @@ pmToolbarOptions <- function(
   drawRectangle = TRUE,
   editMode = TRUE,
   cutPolygon = TRUE,
-  dragPolygon = FALSE,
   removalMode = TRUE,
   position = 'topleft'
 ) {
@@ -33,33 +32,33 @@ pmToolbarOptions <- function(
     drawRectangle = drawRectangle,
     editMode = editMode,
     cutPolygon = cutPolygon,
-    dragPolygon = dragPolygon,
     removalMode = removalMode,
     position = position
   ))
 }
 
-#' Title
+#' Set Options for 'leaflet.pm' Draw Mode
 #'
-#' @param snappable
-#' @param snapDistance
-#' @param tooltips
-#' @param cursorMarker
-#' @param finishOnDoubleClick
-#' @param finishOn
-#' @param allowSelfIntersection
-#' @param templineStyle
-#' @param hintlineStyle
-#' @param markerStyle
+#' @param snappable \code{logical} to snap while drawing. Default is \code{TRUE}.
+#' @param snapDistance \code{integer} for the distance within which snapping will occur.  Default is \code{20}.
+#' @param snapMiddle \code{logical} to snap in the middle of segments. Default is \code{TRUE}.
+#' @param tooltips \code{logical} to show tooltips.  Default is \code{TRUE}.
+#' @param cursorMarker \code{logical} to show a marker at the cursor.  Default is \code{TRUE}.
+#' @param finishOn \code{string} type of layer event to finish the drawn shape.  Example events are
+#'          'mouseout', 'dblclick', 'contextmenu'.  Default is \code{NULL}.
+#' @param allowSelfIntersection \code{logical} to allow self-intersection.  Default is \code{TRUE}.
+#' @param templineStyle \code{list} to customize the styling of the lines between coordinates and markers.
+#' @param hintlineStyle \code{list} to customize the styling of the line between the last marker and the cursor.
+#' @param markerStyle \code{list} to customize the styling of the added marker.
 #'
-#' @return
+#' @return \code{list} of options
 #' @export
 pmDrawOptions <- function(
   snappable = TRUE,
   snapDistance = 20,
+  snapMiddle = TRUE,
   tooltips = TRUE,
   cursorMarker = TRUE,
-  finishOnDoubleClick = FALSE,
   finishOn = NULL,
   allowSelfIntersection = TRUE,
   templineStyle = list(),
@@ -74,9 +73,9 @@ pmDrawOptions <- function(
   leaflet::filterNULL(list(
     snappable = snappable,
     snapDistance = snapDistance,
+    snapMiddle = snapMiddle,
     tooltips = tooltips,
     cursorMarker = cursorMarker,
-    finishOnDoubleClick = finishOnDoubleClick,
     finishOn = finishOn,
     allowSelfIntersection = allowSelfIntersection,
     templineStyle = templineStyle,
@@ -85,39 +84,43 @@ pmDrawOptions <- function(
   ))
 }
 
-#' Title
+#' Set Options for 'leaflet.pm' Edit Mode
 #'
-#' @param snappable
-#' @param snapDistance
-#' @param allowSelfIntersection
-#' @param draggable
+#' @param snappable \code{logical} to snap while drawing. Default is \code{TRUE}.
+#' @param snapDistance \code{integer} for the distance within which snapping will occur.  Default is \code{20}.
+#' @param allowSelfIntersection \code{logical} to allow self-intersection.  Default is \code{TRUE}.
+#' @param draggable \code{logical} make the layer draggable.  Default is \code{TRUE}.
+#' @param preventMarkerRemoval \code{logical} to disable removal via right-click.  Default is \code{FALSE}.
+#' @param preventVertexEdit \code{logical} to disable editing of vertices.  Default is \code{FALSE}.
 #'
-#' @return
+#' @return \code{list} of options
 #' @export
 pmEditOptions <- function(
   snappable = TRUE,
   snapDistance = 20,
   allowSelfIntersection = TRUE,
-  draggable = TRUE
+  draggable = TRUE,
+  preventMarkerRemoval = FALSE,
+  preventVertexEdit = FALSE
 ) {
   leaflet::filterNULL(list(
     snappable = snappable,
     snapDistance = snapDistance,
     allowSelfIntersection = allowSelfIntersection,
-    draggable = draggable
+    draggable = draggable,
+    preventMarkerRemoval = preventMarkerRemoval,
+    preventVertexEdit = preventVertexEdit
   ))
 }
 
 
-#' Title
+#' Set Options for 'leaflet.pm' Cut Mode
 #'
-#' @param snappable
-#' @param cursorMarker
+#' @param snappable \code{logical} to snap while drawing. Default is \code{TRUE}.
+#' @param cursorMarker \code{logical} to show a marker at the cursor.  Default is \code{TRUE}.
 #'
-#' @return
+#' @return \code{list} of options
 #' @export
-#'
-#' @examples
 pmCutOptions <- function(
   snappable = FALSE,
   cursorMarker = FALSE

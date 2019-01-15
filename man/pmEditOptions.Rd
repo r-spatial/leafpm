@@ -2,14 +2,28 @@
 % Please edit documentation in R/options.R
 \name{pmEditOptions}
 \alias{pmEditOptions}
-\title{Title}
+\title{Set Options for 'leaflet.pm' Edit Mode}
 \usage{
 pmEditOptions(snappable = TRUE, snapDistance = 20,
-  allowSelfIntersection = TRUE, draggable = TRUE)
+  allowSelfIntersection = TRUE, draggable = TRUE,
+  preventMarkerRemoval = FALSE, preventVertexEdit = FALSE)
 }
 \arguments{
-\item{draggable}{}
+\item{snappable}{\code{logical} to snap while drawing. Default is \code{TRUE}.}
+
+\item{snapDistance}{\code{integer} for the distance within which snapping will occur.  Default is \code{20}.}
+
+\item{allowSelfIntersection}{\code{logical} to allow self-intersection.  Default is \code{TRUE}.}
+
+\item{draggable}{\code{logical} make the layer draggable.  Default is \code{TRUE}.}
+
+\item{preventMarkerRemoval}{\code{logical} to disable removal via right-click.  Default is \code{FALSE}.}
+
+\item{preventVertexEdit}{\code{logical} to disable editing of vertices.  Default is \code{FALSE}.}
+}
+\value{
+\code{list} of options
 }
 \description{
-Title
+Set Options for 'leaflet.pm' Edit Mode
 }

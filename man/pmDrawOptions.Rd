@@ -2,17 +2,39 @@
 % Please edit documentation in R/options.R
 \name{pmDrawOptions}
 \alias{pmDrawOptions}
-\title{Title}
+\title{Set Options for 'leaflet.pm' Draw Mode}
 \usage{
-pmDrawOptions(snappable = TRUE, snapDistance = 20, tooltips = TRUE,
-  cursorMarker = TRUE, finishOnDoubleClick = FALSE, finishOn = NULL,
+pmDrawOptions(snappable = TRUE, snapDistance = 20, snapMiddle = TRUE,
+  tooltips = TRUE, cursorMarker = TRUE, finishOn = NULL,
   allowSelfIntersection = TRUE, templineStyle = list(),
   hintlineStyle = list(color = "#3388ff", dashArray = "5,5"),
   markerStyle = list(draggable = TRUE))
 }
 \arguments{
-\item{markerStyle}{}
+\item{snappable}{\code{logical} to snap while drawing. Default is \code{TRUE}.}
+
+\item{snapDistance}{\code{integer} for the distance within which snapping will occur.  Default is \code{20}.}
+
+\item{snapMiddle}{\code{logical} to snap in the middle of segments. Default is \code{TRUE}.}
+
+\item{tooltips}{\code{logical} to show tooltips.  Default is \code{TRUE}.}
+
+\item{cursorMarker}{\code{logical} to show a marker at the cursor.  Default is \code{TRUE}.}
+
+\item{finishOn}{\code{string} type of layer event to finish the drawn shape.  Example events are
+'mouseout', 'dblclick', 'contextmenu'.  Default is \code{NULL}.}
+
+\item{allowSelfIntersection}{\code{logical} to allow self-intersection.  Default is \code{TRUE}.}
+
+\item{templineStyle}{\code{list} to customize the styling of the lines between coordinates and markers.}
+
+\item{hintlineStyle}{\code{list} to customize the styling of the line between the last marker and the cursor.}
+
+\item{markerStyle}{\code{list} to customize the styling of the added marker.}
+}
+\value{
+\code{list} of options
 }
 \description{
-Title
+Set Options for 'leaflet.pm' Draw Mode
 }

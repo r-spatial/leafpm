@@ -15,16 +15,16 @@ addPmToolbar(map = NULL, targetLayerId = NULL, targetGroup = NULL,
 
 \item{targetGroup}{\code{string} name of the group to edit}
 
-\item{toolbarOptions}{\code{pmToolbarOptions()}}
+\item{toolbarOptions}{\code{\link{pmToolbarOptions}}}
 
-\item{drawOptions}{\code{pmDrawOptions()}}
+\item{drawOptions}{\code{\link{pmDrawOptions}}}
 
-\item{editOptions}{\code{pmEditOptions()}}
+\item{editOptions}{\code{\link{pmEditOptions}}}
 
-\item{cutOptions}{\code{pmCutOptions()}}
+\item{cutOptions}{\code{\link{pmCutOptions}}}
 }
 \value{
-leaflet htmlwidget
+\code{leaflet} htmlwidget
 }
 \description{
 Add 'leaflet-pm' Toolbar to a Leaflet 'htmlwidget'

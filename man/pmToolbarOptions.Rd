@@ -2,16 +2,36 @@
 % Please edit documentation in R/options.R
 \name{pmToolbarOptions}
 \alias{pmToolbarOptions}
-\title{Title}
+\title{Set Options for 'leaflet.pm' Toolbar}
 \usage{
 pmToolbarOptions(drawMarker = TRUE, drawPolygon = TRUE,
   drawPolyline = TRUE, drawCircle = TRUE, drawRectangle = TRUE,
-  editMode = TRUE, cutPolygon = TRUE, dragPolygon = FALSE,
-  removalMode = TRUE, position = "topleft")
+  editMode = TRUE, cutPolygon = TRUE, removalMode = TRUE,
+  position = "topleft")
 }
 \arguments{
-\item{position}{}
+\item{drawMarker}{\code{logical} add button to draw a marker. Default is \code{TRUE}.}
+
+\item{drawPolygon}{\code{logical} add button to draw a polygon. Default is \code{TRUE}.}
+
+\item{drawPolyline}{\code{logical} add button to draw a polyline. Default is \code{TRUE}.}
+
+\item{drawCircle}{\code{logical} add button to draw a circle. Default is \code{TRUE}.}
+
+\item{drawRectangle}{\code{logical} add button to draw a rectangle. Default is \code{TRUE}.}
+
+\item{editMode}{\code{logical} add button to edit features. Default is \code{TRUE}.}
+
+\item{cutPolygon}{\code{logical} add button to cut a hole. Default is \code{TRUE}.}
+
+\item{removalMode}{\code{logical} add button to remove features. Default is \code{TRUE}.}
+
+\item{position}{\code{string} toolbar position. Options are 'topleft', 'topright', 'bottomleft', 'bottomright'.
+Default is \code{'topleft'}.}
+}
+\value{
+\code{leaflet} htmlwidget with added toolbar
 }
 \description{
-Title
+Set Options for 'leaflet.pm' Toolbar
 }

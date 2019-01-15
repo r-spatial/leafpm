@@ -2,13 +2,18 @@
 % Please edit documentation in R/options.R
 \name{pmCutOptions}
 \alias{pmCutOptions}
-\title{Title}
+\title{Set Options for 'leaflet.pm' Cut Mode}
 \usage{
 pmCutOptions(snappable = FALSE, cursorMarker = FALSE)
 }
 \arguments{
-\item{cursorMarker}{}
+\item{snappable}{\code{logical} to snap while drawing. Default is \code{TRUE}.}
+
+\item{cursorMarker}{\code{logical} to show a marker at the cursor.  Default is \code{TRUE}.}
+}
+\value{
+\code{list} of options
 }
 \description{
-Title
+Set Options for 'leaflet.pm' Cut Mode
 }

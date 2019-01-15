@@ -4,8 +4,8 @@ Date: 2019-01-05
 Title: Leaflet Map Plugin for Drawing and Editing
 Description: Edit, draw, cut, and delete geographic features on leaflet maps using the 'Leaflet.pm' plugin.
 Authors@R: c(
-    person("Tim", "Appelhans", role = c("aut", "cre"), email = "tim.appelhans@gmail.com"),
-    person("Kenton", "Russell", role = c("aut"))
+    person("Kenton", "Russell", role = c("aut", "cre"), email = "kent.russell@timelyportfolio.com"),
+    person("Tim", "Appelhans", role = c("aut"))
   )
 License: MIT + file LICENSE
 URL: https://github.com/r-spatial/leafpm
@@ -13,7 +13,7 @@ BugReports: https://github.com/r-spatial/leafpm/issues
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Depends:
     R (>= 3.1.0)
 Imports:
