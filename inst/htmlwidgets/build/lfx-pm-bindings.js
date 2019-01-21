@@ -14,8 +14,16 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
       if(!layer.feature.properties) {
         layer.feature.properties = {};
       }
-      layer.feature.properties._leaflet_id = featureId;
-      layer.feature.properties.layerId = layer.options.layerId;
+      // if layer has properties._leaflet_id then use that as our featureId
+      //   this will happen  since cut replaces the original and generates a new id
+      if(!layer.feature.properties.hasOwnProperty("_leaflet_id")) {
+        layer.feature.properties._leaflet_id = featureId;
+      }
+      // as above if layerId already exists then keep it
+      if(!layer.feature.properties.hasOwnProperty("layerId")) {
+        layer.feature.properties.layerId = layer.options.layerId;
+      }
+
       if(typeof layer.getRadius === 'function') {
         layer.feature.properties.radius = layer.getRadius();
       }
@@ -211,6 +219,14 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
       // add id so we can trace edit and remove events later
       layer.feature.properties._leaflet_id = featureId;
       layer.feature.properties.layerId = layer.options.layerId;
+      // mapedit joins by "id" and "layerId" so set "id" as well
+      if(typeof(layer.options.layerId) !== "undefined") {
+        layer.feature.properties.edit_id = layer.options.layerId;
+        layer.feature.properties.layerId = layer.options.layerId;
+      } else {
+        layer.feature.properties.edit_id = String(featureId);
+        layer.feature.properties.layerId = String(featureId);
+      }
       // circles are just Points and toGeoJSON won't store radius by default
       // so we store it inside the properties.
       if(typeof layer.getRadius === 'function') {
