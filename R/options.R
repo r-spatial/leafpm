@@ -117,16 +117,19 @@ pmEditOptions <- function(
 #' Set Options for 'leaflet.pm' Cut Mode
 #'
 #' @param snappable \code{logical} to snap while drawing. Default is \code{TRUE}.
+#' @param allowSelfIntersection \code{logical} to allow self-intersection.  Default is \code{TRUE}.
 #' @param cursorMarker \code{logical} to show a marker at the cursor.  Default is \code{TRUE}.
 #'
 #' @return \code{list} of options
 #' @export
 pmCutOptions <- function(
   snappable = FALSE,
+  allowSelfIntersection = TRUE,
   cursorMarker = FALSE
 ) {
   leaflet::filterNULL(list(
     snappable = snappable,
+    allowSelfIntersection = allowSelfIntersection,
     cursorMarker = cursorMarker
   ))
 }
