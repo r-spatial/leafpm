@@ -37,7 +37,7 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
     var enablePm = function(layer, options) {
       // set pmIgnore to false so we can not disable later
       layer.options.pmIgnore = false;
-      if(layer.hasOwnProperty("pm") && layer.pm.hasOwnProperty("enable")) {
+      if(layer.hasOwnProperty("pm") && typeof(layer.pm.enable) === "function") {
         layer.pm.enable(options.editOptions);
         layer.pm.disable();
       }
@@ -55,7 +55,7 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
       editableFeatureGroup = map.layerManager.getLayer('geojson', targetLayerId);
       if(editableFeatureGroup) {
         map._editableGeoJSONLayerId = targetLayerId;
-        enablePm(editableFeatureGroup, options.editOptions);
+        enablePm(editableFeatureGroup, options);
       } else {
         // throw an error if we can't find the target GeoJSON layer
         throw 'GeoJSON layer with ID '+targetLayerId+' not Found';
@@ -72,9 +72,9 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
 
       if(editableFeatureGroup) {
         // enable pm for the group
-        enablePm(editableFeatureGroup, options.editOptions);
+        enablePm(editableFeatureGroup, options);
         editableFeatureGroup.eachLayer(function(layer) {
-          enablePm(layer, options.editOptions);
+          enablePm(layer, options);
         });
       }
     }
