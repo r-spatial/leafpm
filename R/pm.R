@@ -9,6 +9,8 @@
 #' @param cutOptions \code{\link{pmCutOptions}}
 #'
 #' @return \code{leaflet} htmlwidget
+#'
+#' @example inst/examples/examples_roxygen.R
 #' @export
 addPmToolbar <- function(
   map = NULL,

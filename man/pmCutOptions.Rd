@@ -4,10 +4,13 @@
 \alias{pmCutOptions}
 \title{Set Options for 'leaflet.pm' Cut Mode}
 \usage{
-pmCutOptions(snappable = FALSE, cursorMarker = FALSE)
+pmCutOptions(snappable = FALSE, allowSelfIntersection = TRUE,
+  cursorMarker = FALSE)
 }
 \arguments{
 \item{snappable}{\code{logical} to snap while drawing. Default is \code{TRUE}.}
+
+\item{allowSelfIntersection}{\code{logical} to allow self-intersection.  Default is \code{TRUE}.}
 
 \item{cursorMarker}{\code{logical} to show a marker at the cursor.  Default is \code{TRUE}.}
 }

@@ -1,2 +1,5 @@
+^\.travis\.yml$
+^CODE_OF_CONDUCT\.md$
+^README\.Rmd$
 ^leafpm\.Rproj$
 ^\.Rproj\.user$

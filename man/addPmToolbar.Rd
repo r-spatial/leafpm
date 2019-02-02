@@ -29,3 +29,24 @@ addPmToolbar(map = NULL, targetLayerId = NULL, targetGroup = NULL,
 \description{
 Add 'leaflet-pm' Toolbar to a Leaflet 'htmlwidget'
 }
+\examples{
+\dontrun{
+  library(leaflet)
+  library(leafpm)
+
+  # quick example
+  leaflet() \%>\%
+    addTiles() \%>\%
+    addPmToolbar()
+
+  # customizing with options
+  leaflet() \%>\%
+    addTiles() \%>\%
+    addPmToolbar(
+      toolbarOptions = pmToolbarOptions(drawMarker = FALSE, position = "topright"),
+      drawOptions = pmDrawOptions(snappable = FALSE, allowSelfIntersection = FALSE)
+      #editOptions = pmEditOptions(...)
+      #cutOptions = pmCutOptions(...)
+    )
+}
+}
