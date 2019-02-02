@@ -41,7 +41,7 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
         layer.pm.enable(options.editOptions);
         layer.pm.disable();
       }
-    }
+    };
 
     if(map.pm.controlsVisible()) {
       map.pm.removeControls();
@@ -120,69 +120,8 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
       }
     });
 
-    // FeatureGroup that will hold our drawn shapes/markers
-    // This can be an existing GeoJSON layer whose features can be edited/deleted or new ones added.
-    // OR an existing FeatureGroup whose features can be edited/deleted or new ones added.
-    // OR a new FeatureGroup to hold drawn shapes.
-/*
-    var editableFeatureGroup;
-
-    if(targetLayerId) {
-      // If we're given an existing GeoJSON layer find it and use it
-      editableFeatureGroup = map.layerManager.getLayer('geojson', targetLayerId);
-      if(editableFeatureGroup) {
-        map._editableGeoJSONLayerId = targetLayerId;
-      } else {
-        // throw an error if we can't find the target GeoJSON layer
-        throw 'GeoJSON layer with ID '+targetLayerId+' not Found';
-      }
-    } else {
-      // If we're given an existing FeatureLayer use that.
-      // In this case we don't throw an error if the specified FeatureGroup is not found,
-      // we silently create a new one.
-      if(!targetGroup) {
-        targetGroup = 'editableFeatureGroup';
-      }
-      editableFeatureGroup = map.layerManager.getLayerGroup(targetGroup, true);
-      map._editableFeatureGroupName = targetGroup;
-    }
-
-    // Create appropriate Marker Icon.
-    if(options && options.draw && options.draw.marker) {
-      if(options.draw.marker.markerIcon &&
-        options.draw.marker.markerIconFunction) {
-        options.draw.marker.icon =
-          options.draw.marker.markerIconFunction(
-            options.draw.marker.markerIcon);
-      }
-    }
-
-    // create appropriate options
-    if(!$.isEmptyObject(options.edit)) {
-      var editOptions = {};
-      if(!options.edit.remove) {
-        editOptions.remove = false;
-      }
-      if(!options.edit.edit) {
-        editOptions.edit = false;
-      } else if(!$.isEmptyObject(options.edit.selectedPathOptions)) {
-        editOptions.edit = {};
-        editOptions.edit.selectedPathOptions =
-          options.edit.selectedPathOptions;
-      }
-
-      if(!$.isEmptyObject(options.edit.poly)) {
-        editOptions.poly = options.edit.poly;
-      }
-
-      editOptions.featureGroup = editableFeatureGroup;
-      options.edit = editOptions;
-    }
-*/
-    //map.drawToolbar =  new L.Control.Draw(options);
-    //map.drawToolbar.addTo(map);
-
     // this is the only way I could find to set drawing options
+    //   enable with options and then disable
     map.pm.enableDraw('Poly', options.drawOptions);
     map.pm.enableDraw('Rectangle', options.drawOptions);
     map.pm.enableDraw('Line', options.drawOptions);
@@ -191,8 +130,8 @@ LeafletWidget.methods.addPmToolbar = function(targetLayerId, targetGroup, option
     map.pm.disableDraw();
 
     // set cut options
-    map.pm.Draw.Cut.enable(options);
-    map.pm.Draw.Cut.disable(options);
+    map.pm.Draw.Cut.enable(options.cutOptions);
+    map.pm.Draw.Cut.disable(options.cutOptions);
 
     map.pm.addControls(options.toolbarOptions);
 
@@ -299,22 +238,3 @@ LeafletWidget.methods.removePmToolbar = function(clearFeatures) {
   }).call(this);
 
 };
-
-/* code from leaflet.extras left as a reminder to add
-LeafletWidget.methods.getDrawnItems = function() {
-  var map = this;
-
-  var featureGroup;
-  if(map._editableGeoJSONLayerId) {
-    featureGroup = map.layerManager.getLayer('geojson', map._editableGeoJSONLayerId);
-  } else if(map._editableFeatureGroupName) {
-    featureGroup = map.layerManager.getLayerGroup(map._editableFeatureGroupName, false);
-  }
-  if(featureGroup) {
-    return featureGroup.toGeoJSON();
-  } else {
-    return null;
-  }
-
-};
-*/
