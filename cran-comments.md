@@ -8,14 +8,14 @@
 
 0 errors | 0 warnings | 2 notes
 
-N  checking CRAN incoming feasibility
-   Maintainer: 'Kenton Russell <kent.russell@timelyportfolio.com>'
-   
-   New submission
-✔  checking package namespace information
-N  checking package dependencies
-   Packages which this enhances but not available for checking:
-     'geojsonio', 'mapedit', 'mapview'
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: 'Kenton Russell <kent.russell@timelyportfolio.com>'
+
+New submission
+
+* checking package dependencies ... NOTE
+Packages which this enhances but not available for checking:
+  'geojsonio', 'mapedit', 'mapview'
 
 ## Reverse dependencies
 
