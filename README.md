@@ -3,6 +3,8 @@
 
 # leafpm - Interactively Edit Spatial Vector Features in R
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/leafpm)](https://cran.r-project.org/package=leafpm)
 [![Travis build
 status](https://travis-ci.org/r-spatial/leafpm.svg?branch=master)](https://travis-ci.org/r-spatial/leafpm)
 

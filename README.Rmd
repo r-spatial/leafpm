@@ -16,7 +16,8 @@ knitr::opts_chunk$set(
 
 # leafpm - Interactively Edit Spatial Vector Features in R
 
-[![Travis build status](https://travis-ci.org/r-spatial/leafpm.svg?branch=master)](https://travis-ci.org/r-spatial/leafpm)
+[![CRAN status](https://www.r-pkg.org/badges/version/leafpm)](https://cran.r-project.org/package=leafpm)
+ [![Travis build status](https://travis-ci.org/r-spatial/leafpm.svg?branch=master)](https://travis-ci.org/r-spatial/leafpm)
 
 `leafpm` is a plugin for [`leaflet`](https://github.com/rstudio/leaflet) to provide map editing and drawing in R with [`Leaflet.pm`](https://github.com/codeofsumit/leaflet.pm).  It is based closely off of [`leaflet.extras`](https://github.com/bhaskarvk/leaflet.extras) `addDrawToolbar()`.  `leafpm` is intended to supplement `leaflet.extras` with better support for snapping and holes.
 
