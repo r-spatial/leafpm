@@ -5,7 +5,7 @@ Title: Leaflet Map Plugin for Drawing and Editing
 Description: A collection of tools for interactive manipulation of (spatial) data 
     layers on leaflet web maps. Tools include editing of existing layers, creation 
     of new layers through drawing of shapes (points, lines, polygons), deletion 
-    of shapes as well as cutting holes into exisitng shapes. Provides control over 
+    of shapes as well as cutting holes into existing shapes. Provides control over 
     options to e.g. prevent self-intersection of polygons and lines or to enable/disable 
     snapping to align shapes.
 Authors@R: c(

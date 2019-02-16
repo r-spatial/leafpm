@@ -1,11 +1,9 @@
 ## Notes
 
-> Pls elaborate: What are leaflet maps? what is that plugin? Is there some
-> reference about the method you can add in the Description field in the
-> form Authors (year) <doi:.....>? Or some web reference in the form
-> <http.....>?
+>   Possibly mis-spelled words in DESCRIPTION:
+     exisitng (8:45)
 
-Added more details to DESCRIPTION to elaborate.
+Sorry for mis-spelling.  It has been corrected.  Thanks!
 
 ## Test environments
 * local Windows 10 install, R 3.4.0
