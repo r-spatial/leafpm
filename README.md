@@ -3,10 +3,12 @@
 
 # leafpm - Interactively Edit Spatial Vector Features in R
 
-[![CRAN
-status](https://www.r-pkg.org/badges/version/leafpm)](https://cran.r-project.org/package=leafpm)
 [![Travis build
 status](https://travis-ci.org/r-spatial/leafpm.svg?branch=master)](https://travis-ci.org/r-spatial/leafpm)
+[![monthly](http://cranlogs.r-pkg.org/badges/leafpm)](https://www.rpackages.io/package/leafpm)
+[![total](http://cranlogs.r-pkg.org/badges/grand-total/leafpm)](https://www.rpackages.io/package/leafpm)
+[![CRAN](http://www.r-pkg.org/badges/version/leafpm?color=009999)](https://cran.r-project.org/package=leafpm)
+[![status](https://tinyverse.netlify.com/badge/leafpm)](https://CRAN.R-project.org/package=leafpm)
 
 `leafpm` is a plugin for [`leaflet`](https://github.com/rstudio/leaflet)
 to provide map editing and drawing in R with
